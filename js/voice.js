@@ -7,6 +7,8 @@ try {
     $('.app').hide();
 }
 
+let btn = document.getElementById("start");
+
 /*-----------------------------
       Voice Recognition 
 ------------------------------*/
@@ -137,8 +139,8 @@ let sensor = new Accelerometer();
 sensor.addEventListener('reading', function(e) {
     document.getElementById('accelerometer').innerHTML = 'x: ' + e.target.x + ' y: ' + e.target.y + ' z: ' + e.target.z;
     console.log(e.target);
-    obj.style.top = parseInt(obj.style.top) ? parseInt(obj.style.top) + parseInt(e.target.y) + 'px' : '10px';
-    obj.style.left = parseInt(obj.style.left) ? parseInt(obj.style.left) + parseInt(e.target.x) + 'px' : '10px';
+    btn.style.top = parseInt(btn.style.top) ? parseInt(btn.style.top) + Math.round(e.target.y) + 'px' : '10px';
+    btn.style.left = parseInt(btn.style.left) ? parseInt(btn.style.left) + Math.round(e.target.x) + 'px' : '10px';
 });
 sensor.start();
 
