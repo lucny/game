@@ -139,8 +139,8 @@ let sensor = new Accelerometer();
 sensor.addEventListener('reading', function(e) {
     document.getElementById('accelerometer').innerHTML = 'x: ' + e.target.x + ' y: ' + e.target.y + ' z: ' + e.target.z;
     console.log(e.target);
-    btn.style.top = parseInt(btn.style.top) ? parseInt(btn.style.top) + Math.round(e.target.y) + 'px' : '10px';
-    btn.style.left = parseInt(btn.style.left) ? parseInt(btn.style.left) + Math.round(e.target.x) + 'px' : '10px';
+    btn.style.top = parseInt(btn.style.top) > 0 ? parseInt(btn.style.top) + Math.round(e.target.y) + 'px' : '10px';
+    btn.style.left = parseInt(btn.style.left) > 0 ? parseInt(btn.style.left) + Math.round(e.target.x) + 'px' : '10px';
 });
 sensor.start();
 
@@ -154,7 +154,7 @@ sensor2.addEventListener('reading', function(e) {
     //var val = lux.map(0, 500, 0, 255);
     //document.getElementById('light').innerHTML = lux + ' lux';
     //document.body.style.backgroundColor = 'yellow';
-    document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 256) + ',' + (lux % 256) + ')';
+    document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 40 + 215) + ',' + (lux % 80 + 175) + ')';
 });
 sensor2.start();
 
@@ -171,6 +171,6 @@ sensor4.addEventListener('reading', function(e) {
     var q = e.target.quaternion;
     heading = Math.atan2(2 * q[0] * q[1] + 2 * q[2] * q[3], 1 - 2 * q[1] * q[1] - 2 * q[2] * q[2]) * (180 / Math.PI);
     if (heading < 0) heading = 360 + heading;
-    compass.style.Transform = 'rotate(' + heading + 'deg)';
+    compass.style.transform = 'rotate(' + heading + 'deg)';
 })
 sensor4.start();
