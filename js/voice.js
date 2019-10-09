@@ -154,7 +154,7 @@ sensor2.addEventListener('reading', function(e) {
     //var val = lux.map(0, 500, 0, 255);
     //document.getElementById('light').innerHTML = lux + ' lux';
     //document.body.style.backgroundColor = 'yellow';
-    //document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 256) + ',' + (lux % 256) + ')';
+    document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 256) + ',' + (lux % 256) + ')';
 });
 sensor2.start();
 
