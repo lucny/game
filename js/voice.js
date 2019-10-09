@@ -137,6 +137,8 @@ let sensor = new Accelerometer();
 sensor.addEventListener('reading', function(e) {
     document.getElementById('accelerometer').innerHTML = 'x: ' + e.target.x + ' y: ' + e.target.y + ' z: ' + e.target.z;
     console.log(e.target);
+    obj.style.top = parseInt(obj.style.top) ? parseInt(obj.style.top) + parseInt(e.target.y) + 'px' : '10px';
+    obj.style.left = parseInt(obj.style.left) ? parseInt(obj.style.left) + parseInt(e.target.x) + 'px' : '10px';
 });
 sensor.start();
 
@@ -149,8 +151,8 @@ sensor2.addEventListener('reading', function(e) {
     // console.log('L:', lux.map(0, 500, 0, 255));
     //var val = lux.map(0, 500, 0, 255);
     //document.getElementById('light').innerHTML = lux + ' lux';
-    document.body.style.backgroundColor = 'yellow';
-    document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 256) + ',' + (lux % 256) + ')';
+    //document.body.style.backgroundColor = 'yellow';
+    //document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 256) + ',' + (lux % 256) + ')';
 });
 sensor2.start();
 
