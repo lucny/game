@@ -148,6 +148,7 @@ sensor2.addEventListener('reading', function(e) {
     var lux = e.target.illuminance;
     console.log('L:', lux.map(0, 500, 0, 255));
     var val = lux.map(0, 500, 0, 255);
+    document.getElementById('light').innerHTML += ',' + val;
     document.body.style.backgroundColor = 'rgb(' + val + ',' + val + ',' + val + ')';
 });
 sensor2.start();
