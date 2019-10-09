@@ -135,14 +135,14 @@ function voiceControl(instr, obj) {
 
 let sensor = new Accelerometer();
 sensor.addEventListener('reading', function(e) {
-    document.getElementById('status').innerHTML = 'x: ' + e.target.x + ' y: ' + e.target.y + ' z: ' + e.target.z;
+    document.getElementById('accelerometer').innerHTML = 'x: ' + e.target.x + ' y: ' + e.target.y + ' z: ' + e.target.z;
     console.log(e.target);
 });
 sensor.start();
 
 sensor2 = new AmbientLightSensor();
 sensor2.addEventListener('reading', function(e) {
-    document.getElementById('status').innerHTML = e.target.illuminance;
+    document.getElementById('light').innerHTML = e.target.illuminance;
     console.log(e.target.illuminance);
 
     var lux = e.target.illuminance;
@@ -151,3 +151,20 @@ sensor2.addEventListener('reading', function(e) {
     document.body.style.backgroundColor = 'rgb(' + val + ',' + val + ',' + val + ')';
 });
 sensor2.start();
+
+var sensor3 = new Magnetometer();
+sensor3.addEventListener('reading', function(e) {
+    let heading = Math.atan2(e.target.y, e.target.x) * (180 / Math.PI);
+    document.getElementById('magnetometer').innerHTML = 'Heading in degrees: ' + heading;
+});
+sensor3.start();
+
+let compass = document.getElementById('compass');
+let sensor4 = new AbsoluteOrientationSensor();
+sensor4.addEventListener('reading', function(e) {
+    var q = e.target.quaternion;
+    heading = Math.atan2(2 * q[0] * q[1] + 2 * q[2] * q[3], 1 - 2 * q[1] * q[1] - 2 * q[2] * q[2]) * (180 / Math.PI);
+    if (heading < 0) heading = 360 + heading;
+    compass.style.Transform = 'rotate(' + heading + 'deg)';
+})
+sensor4.start();
