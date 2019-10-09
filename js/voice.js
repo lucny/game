@@ -132,3 +132,22 @@ function voiceControl(instr, obj) {
             break;
     }*/
 }
+
+let sensor = new Accelerometer();
+sensor.addEventListener('reading', function(e) {
+    document.getElementById('status').innerHTML = 'x: ' + e.target.x + ' y: ' + e.target.y + ' z: ' + e.target.z;
+    console.log(e.target);
+});
+sensor.start();
+
+sensor2 = new AmbientLightSensor();
+sensor2.addEventListener('reading', function(e) {
+    document.getElementById('status').innerHTML = e.target.illuminance;
+    console.log(e.target.illuminance);
+
+    var lux = e.target.illuminance;
+    console.log('L:', lux.map(0, 500, 0, 255));
+    var val = lux.map(0, 500, 0, 255);
+    document.body.style.backgroundColor = 'rgb(' + val + ',' + val + ',' + val + ')';
+});
+sensor2.start();
