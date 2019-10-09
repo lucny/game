@@ -142,13 +142,14 @@ sensor.start();
 
 sensor2 = new AmbientLightSensor();
 sensor2.addEventListener('reading', function(e) {
-    document.getElementById('light').innerHTML = e.target.illuminance;
+    //document.getElementById('light').innerHTML = e.target.illuminance;
     console.log(e.target.illuminance);
 
     var lux = e.target.illuminance;
     console.log('L:', lux.map(0, 500, 0, 255));
     var val = lux.map(0, 500, 0, 255);
     document.getElementById('light').innerHTML = val + ' lux';
+    document.body.style.backgroundColor = 'yellow';
     document.body.style.backgroundColor = 'rgb(' + (lux % 256) + ',' + (lux % 256) + ',' + (lux % 256) + ')';
 });
 sensor2.start();
